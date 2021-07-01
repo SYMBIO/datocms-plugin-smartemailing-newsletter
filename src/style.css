@@ -1,0 +1,9 @@
+.container {
+  background-color: white;
+}
+
+pre {
+  margin: 2rem 0;
+  padding: 1rem;
+  background-color: #eee;
+}

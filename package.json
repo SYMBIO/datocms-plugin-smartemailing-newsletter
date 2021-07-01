@@ -1,0 +1,134 @@
+{
+  "name": "datocms-plugin-smartemailing-newsletter",
+  "homepage": "https://github.com/SYMBIO/datocms-plugin-smartemailing-newsletter",
+  "version": "0.0.1",
+  "description": "Create email campaigns in SmartEmailing from DatoCMS",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=development webpack-dev-server --port 5000",
+    "dist": "NODE_ENV=production webpack --progress",
+    "addToProject": "yo datocms-plugin:add-to-project",
+    "prepublishOnly": "rimraf lib dist && mkdir dist && npm run dist",
+    "lint": "eslint \"./src/*.{js,jsx}\"",
+    "test": "echo 1"
+  },
+  "keywords": [
+    "datocms",
+    "datocms-plugin",
+    "field-addon",
+    "json-field",
+    "text-field",
+    "boolean-field",
+    "float-field",
+    "integer-field",
+    "string-field",
+    "links-field",
+    "link-field",
+    "date-field",
+    "date-time-field",
+    "video-field",
+    "color-field",
+    "seo-field",
+    "lat-lon-field"
+  ],
+  "files": [
+    "dist",
+    "docs"
+  ],
+  "author": "SYMBIO <dev@symbio.agency>",
+  "license": "ISC",
+  "datoCmsPlugin": {
+    "title": "SmartEmailing Connnetor for newsletters",
+    "previewImage": "docs/preview.gif",
+    "coverImage": "docs/cover.png",
+    "entryPoint": "dist/index.html",
+    "pluginType": "field_addon",
+    "fieldTypes": [
+      "json",
+      "text",
+      "boolean",
+      "float",
+      "integer",
+      "string",
+      "links",
+      "link",
+      "date",
+      "date_time",
+      "video",
+      "color",
+      "seo",
+      "lat_lon"
+    ],
+    "parameters": {
+      "global": [
+        {
+          "id": "username",
+          "label": "Username for SmartEmailing API",
+          "type": "string",
+          "required": true,
+          "default": "",
+          "hint": ""
+        },
+        {
+          "id": "api_key",
+          "label": "API key for SmartEmailing API",
+          "type": "string",
+          "required": true,
+          "default": "",
+          "hint": ""
+        }
+      ],
+      "instance": [
+        {
+          "id": "template_id",
+          "label": "Template(s) ID(s) from SE",
+          "type": "string",
+          "required": true,
+          "default": "",
+          "hint": ""
+        }
+      ]
+    }
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.5",
+    "@babel/core": "^7.14.6",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-proposal-decorators": "^7.14.5",
+    "@babel/preset-env": "^7.14.7",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/register": "^7.14.5",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.6",
+    "eslint": "^7.29.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-import-resolver-webpack": "^0.13.1",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.24.0",
+    "generator-datocms-plugin": "^1.0.27",
+    "html-webpack-inline-source-plugin": "^0.0.10",
+    "html-webpack-plugin": "^4.5.2",
+    "mini-css-extract-plugin": "^1.6.2",
+    "serve": "^12.0.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.2",
+    "yo": "^4.2.0"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "classname": "^0.0.0",
+    "datocms-client": "^3.4.11",
+    "dotenv": "^10.0.0",
+    "html-webpack-tags-plugin": "^2.0.17",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "regenerator-runtime": "^0.13.7"
+  }
+}

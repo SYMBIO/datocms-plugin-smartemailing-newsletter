@@ -7,3 +7,35 @@ pre {
   padding: 1rem;
   background-color: #eee;
 }
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.ml-05 {
+  margin-left: 0.5rem;
+}
+
+.sameLine {
+  display: flex;
+  align-items: center;
+}
+
+dl {
+  display: flex;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0;
+}
+
+dt:after {
+  content: ':';
+}
+
+dd {
+  margin-left: 0.5rem;
+}

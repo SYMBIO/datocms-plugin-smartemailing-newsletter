@@ -9,7 +9,7 @@ async function getFilteredRecords(from, to, locale) {
     filter: {
       type: 'news',
       fields: {
-        date_from: {
+        _first_published_at: {
           gt: from,
           lt: to,
         },
@@ -34,17 +34,18 @@ async function getFilteredRecords(from, to, locale) {
 
   return news.filter((n) => n.title[locale]).map((n) => ({
     id: n.id,
-    date: n.date_from,
+    date: n.meta.firstPublishedAt,
     title: n.title,
   })).concat(insights.filter((i) => i.title[locale]).map((i) => ({
     id: i.id,
-    date: i.first_published_at,
+    date: i.meta.firstPublishedAt,
     title: i.title,
-  })));
+    // eslint-disable-next-line no-nested-ternary
+  }))).sort((a, b) => ((a.date < b.date) ? 1 : (a.date > b.date) ? -1 : 0));
 }
 
 module.exports = async (req, res) => {
-  const { from, to, locale } = req.query;
+  const { from, to, locale } = req.body;
 
   const records = await getFilteredRecords(from, to, locale);
 

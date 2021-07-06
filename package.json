@@ -5,11 +5,13 @@
   "description": "Create email campaigns in SmartEmailing from DatoCMS",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server --port 5000",
+    "dev": "NODE_ENV=development webpack serve --port $PORT",
+    "start": "NODE_ENV=development webpack serve --port 5000",
     "dist": "NODE_ENV=production webpack --progress",
     "addToProject": "yo datocms-plugin:add-to-project",
     "lint": "eslint \"./src/*.{js,jsx}\"",
-    "test": "echo 1"
+    "test": "echo 1",
+    "vercel": "vercel dev"
   },
   "keywords": [
     "datocms",
@@ -59,28 +61,43 @@
       "lat_lon"
     ],
     "parameters": {
-      "global": [
+      "global": [],
+      "instance": [
         {
-          "id": "username",
-          "label": "Username for SmartEmailing API",
+          "id": "from_field",
+          "label": "API key of the date field for filtering items since",
           "type": "string",
           "required": true,
           "default": "",
           "hint": ""
         },
         {
-          "id": "api_key",
-          "label": "API key for SmartEmailing API",
+          "id": "to_field",
+          "label": "API key of the date field for filtering items until",
           "type": "string",
           "required": true,
           "default": "",
           "hint": ""
-        }
-      ],
-      "instance": [
+        },
         {
-          "id": "template_id",
-          "label": "Template(s) ID(s) from SE",
+          "id": "items_field",
+          "label": "API key of the links field with items",
+          "type": "string",
+          "required": true,
+          "default": "",
+          "hint": ""
+        },
+        {
+          "id": "create_endpoint",
+          "label": "URL of the endpoint which creates email in SmartEmailing",
+          "type": "string",
+          "required": true,
+          "default": "",
+          "hint": ""
+        },
+        {
+          "id": "stats_endpoint",
+          "label": "URL of the endpoint which gets stats from SmartEmailing",
           "type": "string",
           "required": true,
           "default": "",
@@ -92,13 +109,16 @@
   "devDependencies": {
     "@babel/cli": "^7.14.5",
     "@babel/core": "^7.14.6",
-    "@babel/plugin-proposal-class-properties": "^7.14.5",
-    "@babel/plugin-proposal-decorators": "^7.14.5",
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-react": "^7.14.5",
     "@babel/register": "^7.14.5",
+    "@babel/runtime-corejs3": "^7.14.7",
+    "@webpack-cli/serve": "^1.5.1",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
+    "babel-plugin-polyfill-corejs2": "^0.2.2",
+    "babel-plugin-polyfill-corejs3": "^0.2.3",
+    "babel-plugin-polyfill-regenerator": "^0.2.2",
     "css-loader": "^5.2.6",
     "eslint": "^7.29.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -110,11 +130,10 @@
     "eslint-plugin-react": "^7.24.0",
     "generator-datocms-plugin": "^1.0.27",
     "html-webpack-inline-source-plugin": "^0.0.10",
-    "html-webpack-plugin": "^4.5.2",
-    "mini-css-extract-plugin": "^1.6.2",
-    "serve": "^12.0.0",
-    "style-loader": "^2.0.0",
-    "webpack": "^4.46.0",
+    "html-webpack-plugin": "^5.3.2",
+    "mini-css-extract-plugin": "^2.0.0",
+    "style-loader": "^3.0.0",
+    "webpack": "^5.42.0",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2",
     "yo": "^4.2.0"

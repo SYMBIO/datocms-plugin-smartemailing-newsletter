@@ -99,19 +99,6 @@ export default class Main extends Component {
     plugin.saveCurrentItem();
   }
 
-  async updateFromSE() {
-    const { plugin } = this.props;
-    const { fieldValue } = this.state;
-
-    const { data } = await axios.post('/api/update', {
-      endpoint: plugin.parameters.instance.stats_endpoint,
-    });
-
-    const newFieldValue = { ...fieldValue, se: data };
-
-    plugin.setFieldValue(plugin.fieldPath, newFieldValue);
-  }
-
   render() {
     const {
       fieldValue, from, to, items,

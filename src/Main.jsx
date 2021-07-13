@@ -122,11 +122,19 @@ export default class Main extends Component {
               E-mail byl rozeslán.
               <br />
               <br />
-              <strong>
+              <h2>
                 Základní statistiky
                 <sup>1</sup>
                 :
-              </strong>
+              </h2>
+
+              {Array.isArray(fieldValue.contact_lists)
+              && fieldValue.contact_lists.length > 0 && fieldValue.contact_lists[0] && (
+              <dl>
+                <dt>Rozesláno na seznam</dt>
+                <dd>{fieldValue.contact_lists[0].name}</dd>
+              </dl>
+              )}
 
               <dl>
                 <dt>Začátek rozesílání</dt>

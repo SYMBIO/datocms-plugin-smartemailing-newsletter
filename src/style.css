@@ -39,3 +39,9 @@ dt:after {
 dd {
   margin-left: 0.5rem;
 }
+
+h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}

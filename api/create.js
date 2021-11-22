@@ -3,10 +3,16 @@ const axios = require('axios');
 module.exports = async (req, res) => {
   const { locale, items, endpoint } = req.body;
 
-  const { data } = await axios.post(endpoint, {
-    locale,
-    items,
-  });
+  try {
+    const { data } = await axios.post(endpoint, {
+      locale,
+      items,
+    }, {
+      timeout: 10,
+    });
 
-  res.json(data);
+    res.status(200).end(JSON.stringify(data));
+  } catch (e) {
+    res.status(500).end('timeout');
+  }
 };

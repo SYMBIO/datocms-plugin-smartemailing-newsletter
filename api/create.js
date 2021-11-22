@@ -13,6 +13,7 @@ module.exports = async (req, res) => {
 
     res.status(200).end(JSON.stringify(data));
   } catch (e) {
+    console.error(e);
     res.status(500).end('timeout');
   }
 };

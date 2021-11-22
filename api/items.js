@@ -29,8 +29,20 @@ async function getFilteredRecords(from, to, locale) {
     },
     version: 'published',
   });
+  const promise3 = client.items.all({
+    filter: {
+      type: 'press_release',
+      fields: {
+        _first_published_at: {
+          gt: from,
+          lt: to,
+        },
+      },
+    },
+    version: 'published',
+  });
 
-  const [news, insights] = await Promise.all([promise1, promise2]);
+  const [news, insights, pressReleases] = await Promise.all([promise1, promise2, promise3]);
 
   return news.filter((n) => n.title[locale]).map((n) => ({
     id: n.id,
@@ -40,8 +52,13 @@ async function getFilteredRecords(from, to, locale) {
     id: i.id,
     date: i.meta.firstPublishedAt,
     title: i.title,
+  }))).concat(pressReleases.filter((pr) => pr.title[locale]).map((pr) => ({
+    id: pr.id,
+    date: pr.dateFrom,
+    title: pr.title,
+  })))
     // eslint-disable-next-line no-nested-ternary
-  }))).sort((a, b) => ((a.date < b.date) ? 1 : (a.date > b.date) ? -1 : 0));
+    .sort((a, b) => ((a.date < b.date) ? 1 : (a.date > b.date) ? -1 : 0));
 }
 
 module.exports = async (req, res) => {

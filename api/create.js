@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
       locale,
       items,
     }, {
-      timeout: 10,
+      timeout: 10000,
     });
 
     res.status(200).end(JSON.stringify(data));
